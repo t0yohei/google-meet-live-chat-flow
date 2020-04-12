@@ -25,26 +25,27 @@ const flow = (node) => {
     return
   }
 
-  const message = node.querySelector('#message')
-  if (!message) {
+  const sender = node.querySelectorAll('div:nth-child(2)')[1].innerText
+  const message = node.querySelector('div:nth-child(3)').innerText
+  if (!sender || !message) {
     return
   }
 
-  const text = message.innerText
-
   const doc = (parent || window).document
 
-  const container = doc.querySelector('.html5-video-container')
-  const video = doc.querySelector('.video-stream.html5-main-video')
+  const container = doc.querySelector('[data-layout]')
   const rows = state.rows
-  const height = video.offsetHeight / rows
+  const height = container.offsetHeight / rows
   const fontSize = height * 0.8
 
-  const div = doc.createElement('div')
-  div.innerHTML = text
-  div.setAttribute('style', `
+  const senderDiv = doc.createElement('div')
+  const messageDiv = doc.createElement('div')
+
+  messageDiv.innerHTML = message
+  messageDiv.setAttribute('style', `
     position: absolute;
-    left: 0;
+    padding-top: ${fontSize / 2}px;
+    left: 5px;
     white-space: nowrap;
     display: inline-block;
     font-size: ${fontSize}px;
@@ -53,10 +54,19 @@ const flow = (node) => {
     text-shadow: ${state.textShadow};
   `)
 
-  container.appendChild(div)
+  senderDiv.innerHTML = sender
+  senderDiv.setAttribute('style', `
+    font-size: ${fontSize / 2}px;
+    position: absolute;
+    color: silver;
+    top: 0;
+  `)
+
+  container.appendChild(messageDiv)
+  messageDiv.appendChild(senderDiv)
 
   const width = container.offsetWidth
-  const commentWidth = div.offsetWidth
+  const commentWidth = messageDiv.offsetWidth
   const millis = state.speed * 1000
 
   const now = Date.now()
@@ -100,7 +110,7 @@ const flow = (node) => {
   const depth = Math.floor(index / rows)
   const opacity = 1 - 0.2 * depth
 
-  div.setAttribute('style', div.getAttribute('style') + `
+  messageDiv.setAttribute('style', messageDiv.getAttribute('style') + `
     top: ${top}px;
     opacity: ${opacity};
   `)
@@ -109,9 +119,10 @@ const flow = (node) => {
     { transform: `translate(${width}px, 0px)` },
     { transform: `translate(-${commentWidth}px, 0px)` }
   ]
-  const animation = div.animate(keyframes, millis)
+
+  const animation = messageDiv.animate(keyframes, millis)
   animation.onfinish = () => {
-    div.parentNode.removeChild(div)
+    messageDiv.parentNode.removeChild(messageDiv)
     data[index].shift()
   }
 }
@@ -119,10 +130,16 @@ const flow = (node) => {
 const initialize = async () => {
   logger.log('initialize')
 
+  const commentList = document.querySelector('[jscontroller=ENYfP]')
+
+  if (commentList === null) {
+    return
+  }
+
   if (observer) {
     observer.disconnect()
   }
-  const items = document.querySelector('#items.yt-live-chat-item-list-renderer')
+
   observer = new MutationObserver((mutations) => {
     mutations.forEach((mutation) => {
       const nodes = Array.from(mutation.addedNodes)
@@ -131,10 +148,11 @@ const initialize = async () => {
       }
       nodes.forEach((node) => {
         flow(node)
+        node.style.display = 'none'
       })
     })
   })
-  observer.observe(items, { childList: true })
+  observer.observe(commentList, { childList: true })
 }
 
 chrome.runtime.onMessage.addListener(async (message, sender, sendResponse) => {
@@ -148,9 +166,20 @@ chrome.runtime.onMessage.addListener(async (message, sender, sendResponse) => {
       await loadState()
       break
   }
-});
+})
 
-(async () => {
-  await loadState()
-  initialize(location.href)
-})()
+const initialObserver = new MutationObserver(mutations => {
+  mutations.forEach(mutation => {
+    const removedNodes = Array.from(mutation.removedNodes)
+    const nextSibling = mutation.nextSibling
+    if (removedNodes !== null && nextSibling !== null) {
+      (async () => {
+        await loadState()
+        initialize(location.href)
+      })()
+    }
+  })
+})
+
+const config = { attributes: true, childList: true, characterData: true }
+initialObserver.observe(document.body, config)

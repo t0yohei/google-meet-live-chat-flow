@@ -1,5 +1,5 @@
 {
-  "name": "youtube-live-chat-flow",
+  "name": "google-meet-live-chat-flow",
   "version": "0.0.1",
   "author": {
     "name": "fiahfy",
@@ -40,12 +40,12 @@
   "homepage": "http://fiahfy.blogspot.com/",
   "keywords": [
     "chrome extension",
-    "youtube"
+    "google meet"
   ],
   "private": true,
   "repository": {
     "type": "git",
-    "url": "https://github.com/fiahfy/youtube-live-chat-flow"
+    "url": "https://github.com/t0yohei/google-meet-live-chat-flow"
   },
   "scripts": {
     "archive": "NODE_ENV=production npm run build && mkdir -p dist && zip -r dist/app.zip app",
