@@ -25,11 +25,14 @@ const flow = (node) => {
     return
   }
 
-  const sender = node.querySelectorAll('div:nth-child(2)')[1].innerText
-  const message = node.querySelector('div:nth-child(3)').innerText
-  if (!sender || !message) {
+  const senderElement = node.querySelectorAll('div:nth-child(2)')[1]
+  const messageElement = node.querySelector('div:nth-child(3)')
+  if (!senderElement || !messageElement) {
     return
   }
+
+  const sender = senderElement.innerText
+  const message = messageElement.innerText
 
   const doc = (parent || window).document
 
@@ -170,9 +173,13 @@ chrome.runtime.onMessage.addListener(async (message, sender, sendResponse) => {
 
 const initialObserver = new MutationObserver(mutations => {
   mutations.forEach(mutation => {
-    const removedNodes = Array.from(mutation.removedNodes)
-    const nextSibling = mutation.nextSibling
-    if (removedNodes !== null && nextSibling !== null) {
+    const addedNode = Array.from(mutation.addedNodes)[0]
+    if (
+      addedNode !== undefined &&
+      addedNode.tagName === 'DIV' &&
+      addedNode.hasAttribute('jscontroller') &&
+      addedNode.getAttribute('jscontroller') === 'aSjf3c'
+    ) {
       (async () => {
         await loadState()
         initialize(location.href)
@@ -182,4 +189,4 @@ const initialObserver = new MutationObserver(mutations => {
 })
 
 const config = { attributes: true, childList: true, characterData: true }
-initialObserver.observe(document.body, config)
+initialObserver.observe(document.querySelector('[jsname="RFn3Rd"]'), config)
