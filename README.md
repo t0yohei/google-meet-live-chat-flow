@@ -1,15 +1,17 @@
-# Youtube Live Chat Flow
+# Google Meet Live Chat Flow
 
-> This application is Chrome Extension for highlighting comments on Youtube Live Chat and Youtube Gaming.
+This application is Chrome Extension for highlighting comments on Google Meet Live Chat.
+This application is customised to Google Meet from the very first version fo [youtube-live-chat-flow](https://github.com/fiahfy/youtube-live-chat-flow).
 
 ## Features
-* Highlight owner, moderator and member comments
+* Let chat comments on Google Meet flow on your screean.
 
 ## Installation
-1. Download `.zip` file from [releases page](https://github.com/fiahfy/youtube-live-chat-flow/releases).
+1. Download `src.zip` file from [releases page](https://github.com/t0yohei/google-meet-live-chat-flow/releases).
 2. Unzip this file.
 3. Open URL `chrome://extensions/` by Google Chrome.
-4. Drag & drop `app` directory.
+4. Enable `Developer mode` .
+5. Drag & drop `app` directory.
 
 ## Development
 ``` bash
@@ -19,3 +21,5 @@ yarn
 # watch files changed and reload extension
 yarn dev
 ```
+
+Do Installation step 3, 4 and 5 with your built `app` directory.
