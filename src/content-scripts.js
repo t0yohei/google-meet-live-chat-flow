@@ -38,7 +38,7 @@ const flow = (node) => {
 
   const doc = (parent || window).document
 
-  const container = doc.querySelector('[data-layout]')
+  const container = doc.querySelector('[jsname=qJTHM]')
   const rows = state.rows
   const height = container.offsetHeight / rows
   const fontSize = height * 0.8
