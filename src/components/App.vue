@@ -4,12 +4,12 @@
       <v-container fluid>
         <v-switch
           v-model="enabled"
-          label="Enabled"
+          :label="i18n.enabled"
         />
-        <v-subheader class="pl-0">Comment</v-subheader>
+        <v-subheader class="pl-0">{{ i18n.comment }}</v-subheader>
         <v-layout row>
           <v-flex xs6>
-            <v-subheader class="pl-0">Color</v-subheader>
+            <v-subheader class="pl-0">{{ i18n.color }}</v-subheader>
           </v-flex>
           <v-flex xs6>
             <v-text-field
@@ -20,7 +20,7 @@
         </v-layout>
         <v-layout row>
           <v-flex xs6>
-            <v-subheader class="pl-0">Text Shadow</v-subheader>
+            <v-subheader class="pl-0">{{ i18n.textShadow }}</v-subheader>
           </v-flex>
           <v-flex xs6>
             <v-text-field
@@ -31,7 +31,7 @@
         </v-layout>
         <v-layout row>
           <v-flex xs6>
-            <v-subheader class="pl-0">Rows</v-subheader>
+            <v-subheader class="pl-0">{{ i18n.rows }}</v-subheader>
           </v-flex>
           <v-flex xs6>
             <v-text-field
@@ -42,7 +42,9 @@
         </v-layout>
         <v-layout row>
           <v-flex xs6>
-            <v-subheader class="pl-0">Speed<small class="pl-1">(sec)</small></v-subheader>
+            <v-subheader class="pl-0">{{ i18n.speed }}
+              <small class="pl-1">({{ i18n.sec }})</small>
+            </v-subheader>
           </v-flex>
           <v-flex xs6>
             <v-text-field
@@ -65,6 +67,11 @@ export default {
       },
       set (value) {
         this.$store.dispatch('setEnabled', { enabled: value })
+      }
+    },
+    i18n: {
+      get () {
+        return this.$store.state.i18n
       }
     },
     color: {

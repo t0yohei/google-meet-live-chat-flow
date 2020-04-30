@@ -1,0 +1,23 @@
+{
+  "enabled": {
+    "message": "Enabled"
+  },
+  "comment": {
+    "message": "Comment"
+  },
+  "color": {
+    "message": "Color"
+  },
+  "textShadow": {
+    "message": "Text Shadow"
+  },
+  "rows": {
+    "message": "Rows"
+  },
+  "speed": {
+    "message": "Speed"
+  },
+  "sec": {
+    "message": "sec"
+  }
+}

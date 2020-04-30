@@ -10,7 +10,16 @@ export const defaultState = {
   color: 'white',
   textShadow: '1px 1px 2px #333',
   rows: 12,
-  speed: 6
+  speed: 6,
+  i18n: {
+    enabled: chrome.i18n.getMessage('enabled'),
+    comment: chrome.i18n.getMessage('comment'),
+    color: chrome.i18n.getMessage('color'),
+    textShadow: chrome.i18n.getMessage('textShadow'),
+    rows: chrome.i18n.getMessage('rows'),
+    speed: chrome.i18n.getMessage('speed'),
+    sec: chrome.i18n.getMessage('sec')
+  }
 }
 
 export default new Vuex.Store({

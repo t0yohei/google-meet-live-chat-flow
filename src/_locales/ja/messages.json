@@ -1,0 +1,23 @@
+{
+  "enabled": {
+    "message": "有効化"
+  },
+  "comment": {
+    "message": "コメント"
+  },
+  "color": {
+    "message": "色"
+  },
+  "textShadow": {
+    "message": "シャドウ"
+  },
+  "rows": {
+    "message": "行"
+  },
+  "speed": {
+    "message": "速度"
+  },
+  "sec": {
+    "message": "秒"
+  }
+}

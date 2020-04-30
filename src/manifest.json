@@ -23,6 +23,7 @@
     "default_icon": "assets/icon-48.png",
     "default_popup": "assets/popup.html"
   },
+  "default_locale": "en",
   "permissions": [
     "tabs",
     "storage"
