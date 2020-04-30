@@ -2,9 +2,8 @@
   "name": "google-meet-live-chat-flow",
   "version": "0.0.1",
   "author": {
-    "name": "fiahfy",
-    "email": "d.fiahfy@gmail.com",
-    "url": "http://fiahfy.blogspot.com/"
+    "name": "t0yohei",
+    "email": "k.t0yohei@gmail.com"
   },
   "dependencies": {
     "color": "^3.0.0",
@@ -37,7 +36,6 @@
     "webpack-chrome-extension-reloader": "^0.6.6",
     "webpack-cli": "^2.0.14"
   },
-  "homepage": "http://fiahfy.blogspot.com/",
   "keywords": [
     "chrome extension",
     "google meet"
@@ -51,6 +49,6 @@
     "archive": "NODE_ENV=production npm run build && mkdir -p dist && zip -r dist/app.zip app",
     "build": "webpack",
     "lint": "eslint src --ext .js",
-    "watch": "webpack -w --config webpack.config.dev.babel.js"
+    "dev": "webpack -w --config webpack.config.dev.babel.js"
   }
 }
