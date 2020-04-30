@@ -6,16 +6,16 @@
     "message": "Comment"
   },
   "color": {
-    "message": "color"
+    "message": "Color"
   },
   "textShadow": {
-    "message": "textShadow"
+    "message": "Text Shadow"
   },
   "rows": {
-    "message": "rows"
+    "message": "Rows"
   },
   "speed": {
-    "message": "speed"
+    "message": "Speed"
   },
   "sec": {
     "message": "sec"
