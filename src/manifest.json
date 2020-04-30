@@ -2,7 +2,7 @@
   "manifest_version": 2,
   "name": "Google Meet Live Chat Flow",
   "description": "Comments Flowing on Google Meet Live Chat.",
-  "version": "1.2",
+  "version": "1.3",
   "icons": {
     "48": "assets/icon-48.png"
   },
