@@ -25,6 +25,8 @@ const flow = (node) => {
     return
   }
 
+  node.style.display = 'none'
+
   const senderElement = node.querySelectorAll('div:nth-child(2)')[1]
   const messageElement = node.querySelector('div:nth-child(3)')
   if (!senderElement || !messageElement) {
@@ -151,7 +153,6 @@ const initialize = async () => {
       }
       nodes.forEach((node) => {
         flow(node)
-        node.style.display = 'none'
       })
     })
   })
