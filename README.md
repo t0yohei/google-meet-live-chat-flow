@@ -1,3 +1,5 @@
+This repository isn't maintained and then archived.
+
 [日本語版はこちら](https://github.com/t0yohei/google-meet-live-chat-flow/blob/master/README-ja.md)
 
 # Google Meet Live Chat Flow
